@@ -16,7 +16,6 @@
 		
 		// Load data if query strings are not blank
 		if (guide != null) {
-			console.log(guide);
 			$('[name="selectGuide"]').val(guide);
 			UpdateData();
 		};	
@@ -26,7 +25,6 @@
 		$.getJSON('./guide_export.json', function(data){
 			// Get selected guide, filter the JSON, extract only 
 			var guide = $('[name="selectGuide"]').val();
-			console.log(guide);
 			var filteredData = data.filter(x => x.title == guide);
 			
 			// Extract subtitle, data, and filenames from the JSON
@@ -46,14 +44,15 @@
 				var x = data_orig[index] ? data_orig[index] : (fname[index] ? '<img width=50% src="assets/' + fname[index] + '">' : '');
 				
 				x = sub_title[index] == '' ? x : '<h2>' + sub_title[index] + '</h2><br>' + x;
-				x = x.replaceAll('src="/girlsfrontline/sites/girlsfrontline/files/inline-images/', 'src="assets/');
+				x = x.replaceAll('src="/girlsfrontline/sites/girlsfrontline/files/inline-images/', 'src="assets/').replaceAll(null, '');
 				data_final.push(x);
 			});
 			
 			// Populate divs
-			$('#guideHeader').text(filteredData[0].title);
-			$('#guideDesc').text(filteredData[0].description);
-			$('#guideAuthors').text('By: ' + filteredData[0].authors);
+			console.log(filteredData[0].title);
+			$('#guideHeader').html(filteredData[0].title ? '<h1>' + filteredData[0].title + '</h1>' : 'Missing Title');
+			$('#guideDesc').text(filteredData[0].description ? filteredData[0].description : 'Missing Description');
+			$('#guideAuthors').text(filteredData[0].authors ? 'Authors: ' + filteredData[0].authors : 'Missing Authors');
 			$('#guideData').html(data_final.join('<br>'));
 			
 			// Update URL with new query strings if applicable

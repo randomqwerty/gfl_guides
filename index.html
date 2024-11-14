@@ -2,13 +2,15 @@
 <html lang="en">
   <head>
 	<link rel="stylesheet" href="index.css">
-    <title>GFL Guides</title>
+    <title>Girls' Frontline Guides</title>
   </head>
   
   <body>
-    <h1>GFL Guides</h1>
+    <h1>Girls' Frontline Guides</h1>
 	<br>
-	<label for="selectGuide">Select a guide to load:</label>
+	<p>This site contains guides that were extracted from a database dump of the former GFL GamePress site.These guides may be missing parts, especially images, and may be janky - please bear with this as the database is horrendously structured, I am not a web dev or programmer, and communication with GamePress has been poor or practically non-existent since the site originally went down. For the old GamePress doll analyses, please see <a href="https://gfverse.info/gfl1/dolls">GFVerse</a>. These guides will hopefully make their way there in the future as well.</p>
+	<br>
+	<label for="selectGuide">Select a guide below, then press Load Guide:</label>
 	<br>
 	<input name="selectGuide" list="selectGuide"></input>
 	<datalist id="selectGuide">
@@ -16,6 +18,8 @@
 	</datalist>
 	
 	<button onclick="UpdateData()">Load Guide</button>
+	<br>
+	<br>
 	<br>
 	<br>
 
@@ -26,7 +30,7 @@
 	<br>
 	<div id="guideData"></div>
 
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="guideNames.js"></script>
 	<script type="text/javascript" src="index.js"></script>
   </body>
