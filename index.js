@@ -21,7 +21,13 @@
 		};	
 	});
 	
-	function UpdateData() {		
+	function UpdateData() {
+		// Reset divs
+		$('#guideHeader').html();
+		$('#guideDesc').text();
+		$('#guideAuthors').text();
+		$('#guideData').html();
+		
 		$.getJSON('./guide_export.json', function(data){
 			// Get selected guide, filter the JSON, extract only 
 			var guide = $('[name="selectGuide"]').val();
@@ -49,7 +55,6 @@
 			});
 			
 			// Populate divs
-			console.log(filteredData[0].title);
 			$('#guideHeader').html(filteredData[0].title ? '<h1>' + filteredData[0].title + '</h1>' : 'Missing Title');
 			$('#guideDesc').text(filteredData[0].description ? filteredData[0].description : 'Missing Description');
 			$('#guideAuthors').text(filteredData[0].authors ? 'Authors: ' + filteredData[0].authors : 'Missing Authors');
